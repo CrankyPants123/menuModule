@@ -60,6 +60,9 @@ void menuModule::setThemeFromLocalThemeSetting(QList<QAction* > themeActions)
     confPath = "org.kylin-usb-creator-data.settings";
 #endif
     m_pGsettingThemeStatus = new QGSettings(confPath.toLocal8Bit());
+    if(!m_pGsettingThemeStatus){
+    	qDebug()<<"系统对应的gsetting字段未正确配置";
+    }
     QString appConf = m_pGsettingThemeStatus->get("thememode").toString();
     if("lightonly" == appConf){
         themeStatus = themeLightOnly;
